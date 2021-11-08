@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, redirect
 import os
+import webbrowser
 
 from flask.helpers import url_for
 
@@ -10,9 +11,10 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
-@app.route("/virtual_mouse", methods=["GET"])
-def virtual_mouse():
+@app.route("/hill_racing", methods=["GET"])
+def hill_racing():
     if request.method == "GET":
+        webbrowser.open("https://www.topgames.com/play/Hill-Climb-Racing")
         path_list = (os.path.dirname(__file__)).split("/")
         print(path_list)
         if path_list[-1] == "flask_app":
@@ -20,17 +22,18 @@ def virtual_mouse():
             print(path_list)    
         final_path = "/".join(path_list)
         print(final_path)
-        os.chdir(final_path+"/Virtual_mouse")
+        os.chdir(final_path+"/Hill_racing")
         print(os.getcwd())
         print("################ Directory Changed ################")
-        os.system("python3 VirtualMouse.py")
+        os.system("python3 hill_racing.py")
 
         
     return redirect(url_for('home'))
 
-@app.route("/virtual_paint", methods=["GET"])
-def virtual_paint():
+@app.route("/crazy_roll", methods=["GET"])
+def crazy_roll():
     if request.method == "GET":
+        webbrowser.open("https://www.crazygames.com/game/crazy-roll-3d")
         path_list = (os.path.dirname(__file__)).split("/")
         print(path_list)
         if path_list[-1] == "flask_app":
@@ -38,10 +41,10 @@ def virtual_paint():
             print(path_list)    
         final_path = "/".join(path_list)
         print(final_path)
-        os.chdir(final_path+"/Virtual_paint")
+        os.chdir(final_path+"/Crazy_roll")
         print(os.getcwd())
         print("################ Directory Changed ################")
-        os.system("python3 VirtualPaint.py")
+        os.system("python3 crazy_roll.py")
 
     return redirect(url_for('home'))
 
