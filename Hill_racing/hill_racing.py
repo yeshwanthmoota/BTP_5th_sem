@@ -49,6 +49,7 @@ while True:
         if fingers[1] == 1 and fingers[2] == 1:
             pyautogui.press('down')
             cv2.circle(img, (x1, y1), 15, (255, 0, 255), cv2.FILLED)
+            cv2.circle(img, (x2, y2), 15, (255, 0, 255), cv2.FILLED)
             plocX, plocY = clocX, clocY    
 
 

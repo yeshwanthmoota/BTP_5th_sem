@@ -11,10 +11,29 @@ app = Flask(__name__)
 def home():
     return render_template("home.html")
 
+
+@app.route("/crazy_roll", methods=["GET"])
+def crazy_roll():
+    if request.method == "GET":
+        webbrowser.open("https://slope-game.com/crazy-roll-3d")
+        path_list = (os.path.dirname(__file__)).split("/")
+        print(path_list)
+        if path_list[-1] == "flask_app":
+            path_list.pop(-1)
+            print(path_list)    
+        final_path = "/".join(path_list)
+        print(final_path)
+        os.chdir(final_path+"/Crazy_roll")
+        print(os.getcwd())
+        print("################ Directory Changed ################")
+        os.system("python3 crazy_roll.py")
+
+    return redirect(url_for('home'))
+
 @app.route("/hill_racing", methods=["GET"])
 def hill_racing():
     if request.method == "GET":
-        webbrowser.open("https://www.topgames.com/play/Hill-Climb-Racing")
+        webbrowser.open("https://www.agame.com/game/hill-racing-challenge")
         path_list = (os.path.dirname(__file__)).split("/")
         print(path_list)
         if path_list[-1] == "flask_app":
@@ -30,23 +49,6 @@ def hill_racing():
         
     return redirect(url_for('home'))
 
-@app.route("/crazy_roll", methods=["GET"])
-def crazy_roll():
-    if request.method == "GET":
-        webbrowser.open("https://www.crazygames.com/game/crazy-roll-3d")
-        path_list = (os.path.dirname(__file__)).split("/")
-        print(path_list)
-        if path_list[-1] == "flask_app":
-            path_list.pop(-1)
-            print(path_list)    
-        final_path = "/".join(path_list)
-        print(final_path)
-        os.chdir(final_path+"/Crazy_roll")
-        print(os.getcwd())
-        print("################ Directory Changed ################")
-        os.system("python3 crazy_roll.py")
-
-    return redirect(url_for('home'))
 
 @app.route("/snake_game", methods=["GET"])
 def snake_game():
