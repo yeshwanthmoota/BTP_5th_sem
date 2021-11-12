@@ -12,10 +12,9 @@ def home():
     return render_template("home.html")
 
 
-@app.route("/crazy_roll", methods=["GET"])
-def crazy_roll():
+@app.route("/etr", methods=["GET"])
+def etr():
     if request.method == "GET":
-        webbrowser.open("https://slope-game.com/crazy-roll-3d")
         path_list = (os.path.dirname(__file__)).split("/")
         print(path_list)
         if path_list[-1] == "flask_app":
@@ -23,10 +22,11 @@ def crazy_roll():
             print(path_list)    
         final_path = "/".join(path_list)
         print(final_path)
-        os.chdir(final_path+"/Crazy_roll")
+        os.chdir(final_path+"/ETR")
         print(os.getcwd())
         print("################ Directory Changed ################")
-        os.system("python3 crazy_roll.py")
+        os.system("parallel ::: 'python3 etr.py' etr")
+        # os.system("etr")
 
     return redirect(url_for('home'))
 

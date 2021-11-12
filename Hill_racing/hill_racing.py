@@ -41,13 +41,15 @@ while True:
     # 4. Only Index Finger : Moving Mode
     if len(lmList) != 0:
         if fingers[1] == 1 and fingers[2] == 0:
-            pyautogui.press('up')
+            pyautogui.keyDown('up')
+            pyautogui.keyUp('up')
             cv2.circle(img, (x1, y1), 15, (255, 0, 255), cv2.FILLED)
             plocX, plocY = clocX, clocY
             
         # 8. Both Index and middle fingers are up : Clicking Mode
         if fingers[1] == 1 and fingers[2] == 1:
-            pyautogui.press('down')
+            pyautogui.keyDown('down')
+            pyautogui.keyUp('down')
             cv2.circle(img, (x1, y1), 15, (255, 0, 255), cv2.FILLED)
             cv2.circle(img, (x2, y2), 15, (255, 0, 255), cv2.FILLED)
             plocX, plocY = clocX, clocY    
